@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.tools.remoteapi.RemoteApiInstaller;
 import com.google.appengine.tools.remoteapi.RemoteApiOptions;
 
@@ -39,20 +36,9 @@ public class AbstractRemoteApiInstaller {
 			RemoteApiOptions options = new RemoteApiOptions().server(prop.getProperty("server"), Integer.parseInt(prop.getProperty("port")))
 															 .credentials(prop.getProperty("username"), prop.getProperty("password"));
 			installer.install(options);
-			
-			
-			/*DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-			System.out.println("Key of new entity is " + ds.put(new Entity("HelloRemoteAPI")));*/
-			
 		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
 			installer.uninstall();
 		}
-		
-		
-		
-		
 	}
 
 }
