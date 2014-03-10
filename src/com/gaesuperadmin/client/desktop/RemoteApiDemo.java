@@ -11,8 +11,10 @@ public class RemoteApiDemo {
 		
 		DataFetchService dataFetchService = DataFetchService.getDataFetchService();
 		
-		System.out.println(dataFetchService.getEntitiesByName("Event"));
-		System.out.println(dataFetchService.getEntitiesByName("AcademicYear"));
+		//System.out.println(dataFetchService.getEntitiesByName("Student"));
+		//System.out.println(dataFetchService.getEntitiesByName("AcademicYear"));
+		System.out.println(dataFetchService.getProperitiesByEntityName("Paper"));
+		
 	}
 
 }
