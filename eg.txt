@@ -1,27 +1,21 @@
-package com.vizaysoni.gaesuperadmin;
+package com.gaesuperadmin.client.desktop;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import com.gaesuperadmin.service.AbstractRemoteApiInstaller;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.tools.remoteapi.RemoteApiInstaller;
-import com.google.appengine.tools.remoteapi.RemoteApiOptions;
 
 public class RemoteApiDemo extends AbstractRemoteApiInstaller{
 
 	public static void main(String[] args) throws IOException {
 
 		new RemoteApiDemo().install();
-		System.out.println("hello " + SERVER);
 		
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		System.out.println("Key of new entity is " + ds.put(new Entity("111")));
