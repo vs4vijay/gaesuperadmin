@@ -1,7 +1,9 @@
 package com.vizaysoni.gaesuperadmin;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -14,14 +16,39 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.tools.remoteapi.RemoteApiInstaller;
 import com.google.appengine.tools.remoteapi.RemoteApiOptions;
 
-public class RemoteApiDemo {
+public class RemoteApiDemo extends AbstractRemoteApiInstaller{
 
 	public static void main(String[] args) throws IOException {
 
+		new RemoteApiDemo().install();
+		System.out.println("hello " + SERVER);
+		
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		System.out.println("Key of new entity is " + ds.put(new Entity("111")));
+		
+		
+		
+		Query query = new Query("Event");
+		
+		
+		/*query.setKeysOnly();
+		Set keys = new HashSet();
+		for (Entity entity : ds.prepare(query).asList(FetchOptions.Builder.withLimit(500))) {
+		keys.add(entity.getKey());
+		}*/
+		
+		 PreparedQuery preparedQuery = ds.prepare(query);
+		
+		 FetchOptions fetchOptions = FetchOptions.Builder.withDefaults();
+         List<Entity> entities = preparedQuery.asList(fetchOptions);
+         
+         for (Entity entity : entities) {
+     		System.out.println(entity);
+            // System.out.println(entity.getProperty("state"));
+         }
 		
 
-
-		int count = 0;
+		/*int count = 0;
 		//while(true) {
 			String username = "";
 			String password = "";
@@ -57,7 +84,7 @@ public class RemoteApiDemo {
 	            
 	            
 	            
-	           /* query = new Query("ConsolidationStage");
+	            query = new Query("ConsolidationStage");
 				key = KeyFactory.createKey("Consolidation", 15382015);
 				query.addFilter("consolidationKey", FilterOperator.EQUAL, key);
 				
@@ -69,14 +96,14 @@ public class RemoteApiDemo {
 	            		//System.out.println(entity);
 	                    System.out.println(entity.getProperty("state"));
 	            }
-	            System.out.println("----Done2 consolidation " + count++);*/
+	            System.out.println("----Done2 consolidation " + count++);
 				
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				installer.uninstall();
-			}
+			}*/
 		//}
 		
 		
