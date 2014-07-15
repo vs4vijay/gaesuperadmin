@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script src="libs/angular/angular.js"></script>
+      <script src="libs/ng-table/ng-table.js"></script>
+
+      <link rel="stylesheet" href="css/bootstrap.css" />
+      <link rel="stylesheet" href="css/ng-table.css" />
+      <link rel="stylesheet" href="css/style.css" />
+
+      <script src="app/app.js"></script>
+      <script src="app/controllers/entity-grid-ctrl.js"></script>
+  </head>
+
+  <body ng-app="gaesuperadmin" ng-controller="EntityGridController">
+
+    <div class="jumbotron">
+      <h1 align="center">GAE SuperAdmin</h1>
+    </div>
+
+    <p align="center">
+        <button id="newButton" type="button" class="btn btn-lg btn-primary">New</button>
+        <button type="button" class="btn btn-lg btn-warning">Edit</button>
+        <button type="button" class="btn btn-lg btn-danger">Delete</button>
+    </p>
+
+    <form id="AddForm" class="well" align="center">
+        <label> First Name: </label>
+        <input type="text" class="form-control" ng-model="entity.fname" placeholder="First Name" />
+
+        <label> Last Name: </label>
+        <input type="text" class="form-control" ng-model="entity.lname" placeholder="Last Name" />
+
+        <label> Student Id: </label>
+        <input type="text" class="form-control" ng-model="entity.sid" placeholder="Student Id " />
+
+        <button type="button" class="btn btn-sm btn-primary" data-ng-click="addStudent(entity)"> Add </button>
+    </form>
+
+    <div id="alert-success" class="alert alert-success" role="alert" ng-show="successMessage">
+        <strong>Well done!</strong> You successfully read this important alert message.
+    </div>
+
+    <table ng-table class="table table-striped">
+        <tr ng-repeat="student in students">
+            <td data-title="'#'">{{$index + 1}}</td>
+            <td data-title="'First Name'">{{student.fname}}</td>
+            <td data-title="'Last Name'">{{student.lname}}</td>
+            <td data-title="'Student ID'">{{student.sid}}</td>
+            <td data-title="'Action'"><a ng-click="deleteStudent($index)"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+    </table>
+
+  </body>
+</html>

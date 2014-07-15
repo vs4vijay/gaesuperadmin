@@ -1,0 +1,14 @@
+h1 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serifSerif;
+}
+body {
+    padding: 10px ;   
+}
+
+.ng-table {
+    border: 1px solid #000;
+}
+
+td {
+  text-align: center;
+}
